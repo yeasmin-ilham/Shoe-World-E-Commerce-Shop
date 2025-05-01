@@ -4,10 +4,20 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { CircleUser, MenuIcon } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { redirect } from "next/navigation";
+import {LogoutLink} from "@kinde-oss/kinde-auth-nextjs/components";
 
 
+export default async function dashboardLayout({children} : {children : ReactNode}){
 
-export default function dashboardLayout({children} : {children : ReactNode}){
+    const {getUser} = getKindeServerSession();
+    const user = await getUser();
+
+    if(!user || user.email !== "farjanayeasminilham@gmail.com"){
+        return redirect("/");
+    }
+
     return( 
         <>
         <div className="flex flex-col max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -41,7 +51,9 @@ export default function dashboardLayout({children} : {children : ReactNode}){
                 <DropdownMenuContent>
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                     <DropdownMenuSeparator/>
-                    <DropdownMenuItem>Logout</DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                        <LogoutLink> Logout </LogoutLink>
+                    </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
         </header>
