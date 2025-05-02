@@ -63,7 +63,10 @@ export default async function dashboardLayout({children} : {children : ReactNode
                 </DropdownMenuContent>
             </DropdownMenu>
         </header>
+
+        <div className="mt-6">
         {children}
+        </div>
         </div>
         
         </>

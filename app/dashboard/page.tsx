@@ -6,7 +6,7 @@ import { DollarSign, PartyPopper, ShoppingBag, User2 } from "lucide-react";
 export default function dashboard(){
     return( 
         <>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 gap:8  lg:grid-cols-4  mt-5">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 gap:8  lg:grid-cols-4">
             <Card>
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
                     <CardTitle className="text-3xl font-bold">Total Revenue</CardTitle>
@@ -68,7 +68,7 @@ export default function dashboard(){
             <CardContent className="flex flex-col gap-8 ">
                 
                 <div className="flex items-center gap-4">
-            <Avatar className="h-9 w-9 font-bold">
+            <Avatar className="hidden sm:flex h-9 w-9 font-bold">
                 <AvatarFallback>HM</AvatarFallback>
             </Avatar>
             <div className="flex flex-col gap-1">
