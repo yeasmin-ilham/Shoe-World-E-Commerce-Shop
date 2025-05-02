@@ -68,45 +68,45 @@ export default function dashboard(){
             <CardContent className="flex flex-col gap-8 ">
                 
                 <div className="flex items-center gap-4">
-            <Avatar className="h-9 w-9 ">
+            <Avatar className="h-9 w-9 font-bold">
                 <AvatarFallback>HM</AvatarFallback>
             </Avatar>
             <div className="flex flex-col gap-1">
                 <p className="text-sm font-medium">Farjana Yeasmin</p>
-                <p className="text-sm text-muted-foreground">farjanayeasminilham@gmail.com</p>
+                <p className="text-sm text-muted-foreground">inilham@gmail.com</p>
             </div> 
             <p className="ml-auto font-medium">+$1,999.00</p>
                 </div>
 
                 <div className="flex items-center gap-4">
-            <Avatar className="h-9 w-9 ">
+            <Avatar className="h-9 w-9 font-bold ">
                 <AvatarFallback>HM</AvatarFallback>
             </Avatar>
             <div className="flex flex-col gap-1">
                 <p className="text-sm font-medium">Farjana Yeasmin</p>
-                <p className="text-sm text-muted-foreground">farjanayeasminilham@gmail.com</p>
+                <p className="text-sm text-muted-foreground">inilham@gmail.com</p>
             </div> 
             <p className="ml-auto font-medium">+$1,999.00</p>
                 </div>
 
                 <div className="flex items-center gap-4">
-            <Avatar className="h-9 w-9 ">
+            <Avatar className="h-9 w-9 font-bold">
                 <AvatarFallback>HM</AvatarFallback>
             </Avatar>
             <div className="flex flex-col gap-1">
                 <p className="text-sm font-medium">Farjana Yeasmin</p>
-                <p className="text-sm text-muted-foreground">farjanayeasminilham@gmail.com</p>
+                <p className="text-sm text-muted-foreground">ilham@gmail.com</p>
             </div> 
             <p className="ml-auto font-medium">+$1,999.00</p>
                 </div>
 
                 <div className="flex items-center gap-4">
-            <Avatar className="h-9 w-9 ">
+            <Avatar className="h-9 w-9 font-bold">
                 <AvatarFallback>HM</AvatarFallback>
             </Avatar>
             <div className="flex flex-col gap-1">
                 <p className="text-sm font-medium">Farjana Yeasmin</p>
-                <p className="text-sm text-muted-foreground">farjanayeasminilham@gmail.com</p>
+                <p className="text-sm text-muted-foreground">ilham@gmail.com</p>
             </div> 
             <p className="ml-auto font-medium">+$1,999.00</p>
                 </div>
