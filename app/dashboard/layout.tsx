@@ -7,6 +7,8 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 import {LogoutLink} from "@kinde-oss/kinde-auth-nextjs/components";
+import Image from "next/image";
+import Logo from "../assets/pngegg (3).png"
 
 
 export default async function dashboardLayout({children} : {children : ReactNode}){
@@ -21,8 +23,11 @@ export default async function dashboardLayout({children} : {children : ReactNode
     return( 
         <>
         <div className="flex flex-col max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
         <header className="sticky top-0 flex h-16 items-center justify-between gap-4 border-b">
+        
             <nav className="hidden font-medium md:flex md:flex-row md:items-center md:gap-6 md:text-[15px] md:font-bold lg:text-[16px] lg:gap-8">
+            <Image src={Logo} width="30" height="30" alt="Logo"/>
             <DashboardNavbar/>
             </nav>
 
@@ -36,7 +41,8 @@ export default async function dashboardLayout({children} : {children : ReactNode
                     </Button>
                 </SheetTrigger>
                 <SheetContent side= "left">
-                    <nav className="flex flex-col gap-6 font-medium text-lg mt-5">
+                    <nav className="flex flex-col gap-6 font-medium text-lg mt-3">
+                    <Image src={Logo} width="33" height="33" alt="Logo" className="ml-6"/>
                         <DashboardNavbar/>
                     </nav>
                 </SheetContent>
