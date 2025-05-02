@@ -56,7 +56,7 @@ export default function dashboard(){
 
         <Card className="xl:col-span-2">
         <CardHeader>
-            <CardTitle>Transactions</CardTitle>
+            <CardTitle className="text-3xl font-bold">Transactions</CardTitle>
             <CardDescription>Recent transactions from your store</CardDescription>
         </CardHeader>
         </Card>
