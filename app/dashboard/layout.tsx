@@ -8,7 +8,8 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 import {LogoutLink} from "@kinde-oss/kinde-auth-nextjs/components";
 import Image from "next/image";
-import Logo from "../assets/pngegg (3).png"
+import Logo from "../assets/pngegg (8).png"
+import { ModeToggle } from "../components/modetoggle";
 
 
 export default async function dashboardLayout({children} : {children : ReactNode}){
@@ -24,7 +25,7 @@ export default async function dashboardLayout({children} : {children : ReactNode
         <>
         <div className="flex flex-col max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
-        <header className="sticky top-0 flex h-16 items-center justify-between gap-4 border-b bg-white">
+        <header className="sticky top-0 flex h-16 items-center justify-between gap-4 border-b backdrop-blur-3xl">
         
             <nav className="hidden font-medium md:flex md:flex-row md:items-center md:gap-6 md:text-[15px] md:font-bold lg:text-[16px] lg:gap-8">
             <Image src={Logo} width="30" height="30" alt="Logo"/>
@@ -48,7 +49,9 @@ export default async function dashboardLayout({children} : {children : ReactNode
                 </SheetContent>
             </Sheet>
 
-            <DropdownMenu>
+        <div className="flex gap-7">
+            <ModeToggle/>
+        <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                     <Button className="rounded-full" variant="secondary" size= "icon">
                         <CircleUser className="w-5 h-5"/>
@@ -62,6 +65,8 @@ export default async function dashboardLayout({children} : {children : ReactNode
                     </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
+        </div>
+
         </header>
 
         <div className="mt-6">

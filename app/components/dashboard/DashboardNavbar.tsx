@@ -35,7 +35,7 @@ export function DashboardNavbar(){
         <>
         {links.map((connect) =>(
             <Link key={connect.id} href={connect.link} className={cn(connect.link === pathname?
-                "text-purple-600" : "text-muted-foreground"
+                "text-primary" : "text-muted-foreground hover:text-primary/85 hover:scale-105 transition"
             )}>
                 {connect.name}
                 </Link>
