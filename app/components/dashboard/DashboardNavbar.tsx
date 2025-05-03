@@ -1,4 +1,8 @@
+"use client"
+
+import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const links = [
 
@@ -26,10 +30,15 @@ const links = [
 
 
 export function DashboardNavbar(){
+    const pathname = usePathname();
     return(
         <>
         {links.map((connect) =>(
-            <Link key={connect.id} href={connect.link}>{connect.name}</Link>
+            <Link key={connect.id} href={connect.link} className={cn(connect.link === pathname?
+                "text-purple-600" : "text-muted-foreground"
+            )}>
+                {connect.name}
+                </Link>
         ))}
         </>
     )
