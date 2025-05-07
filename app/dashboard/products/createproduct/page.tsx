@@ -9,10 +9,32 @@ import { Textarea } from "@/components/ui/textarea";
 import { UploadDropzone } from "@/app/utils/uploadthing";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
+import { useFormState } from "react-dom";
+import { CreateProduct } from "@/app/action";
+import {useForm} from "@conform-to/react"
+import { parseWithZod } from "@conform-to/zod";
+import { productSchema } from "@/app/lib/zodSchema";
 
 export default function createproduct(){
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [lastResult , action] = useFormState(CreateProduct, undefined);
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [form , fields] = useForm({
+
+        lastResult,
+        
+        shouldValidate:"onBlur",
+        shouldRevalidate:"onInput",
+
+        onValidate({formData}){
+            return parseWithZod(formData, {schema:productSchema });
+        },
+
+    });
     return(
-        <>
+        <form id={form.id} onSubmit={form.onSubmit} action={action}>
         <div className="flex flex-row items-center gap-4">
             <Button asChild size="icon" variant="outline">
                 <Link href="/dashboard/products">
@@ -30,27 +52,48 @@ export default function createproduct(){
                 <div className="flex flex-col gap-6">
                     <div className="flex flex-col gap-3 w-full">
                         <Label>Name</Label>
-                        <Input type="text" placeholder="Product Name"></Input>
+                        <Input type="text"
+                        key={fields.name.key}
+                        name={fields.name.name}
+                        defaultValue={fields.name.initialValue}
+                        placeholder="Product Name"/>
+                        <p className="text-red-500">{fields.name.errors}</p>
                     </div>
 
                     <div className=" flex flex-col gap-3 w-full">
                         <Label>Description</Label>
-                        <Textarea placeholder="Write your description here..."/>
+                        <Textarea placeholder="Write your description here..."
+                        key={fields.description.key}
+                        name={fields.description.name}
+                        defaultValue={fields.description.initialValue}/>
+                        <p className="text-red-500">{fields.description.errors}</p>
                     </div>
 
                     <div className=" flex flex-col gap-3 w-full">
                         <Label>Price</Label>
-                        <Input type="number" placeholder="$55"/>
+                        <Input type="number" placeholder="$55"
+                        key={fields.price.key}
+                        name={fields.price.name}
+                        defaultValue={fields.price.initialValue}/>
+                        <p className="text-red-500">{fields.price.errors}</p>
                     </div>
 
                     <div className=" flex flex-col gap-3">
                         <Label>Featured Product</Label>
-                        <Switch/>
+                        <Switch
+                           key={fields.isFeatured.key}
+                           name={fields.isFeatured.name}
+                           defaultValue={fields.isFeatured.initialValue}/>
+                            <p className="text-red-500">{fields.isFeatured.errors}</p>
                     </div>
 
                     <div className=" flex flex-col gap-3">
                         <Label>Status</Label>
-                    <Select>
+                    <Select
+                             key={fields.status.key}
+                             name={fields.status.name}
+                             defaultValue={fields.status.initialValue}
+                    >
                         <SelectTrigger>
                             <SelectValue placeholder="Select Status"/>
                         </SelectTrigger>
@@ -60,7 +103,7 @@ export default function createproduct(){
                             <SelectItem value="archived">Archived</SelectItem>
                         </SelectContent>
                     </Select>
-
+                    <p className="text-red-500">{fields.status.errors}</p>
                     <div>
 
                     </div >
@@ -76,6 +119,6 @@ export default function createproduct(){
             <Button>Create Product</Button>
         </CardFooter>
         </Card>
-        </>
+        </form>
     )
 }
