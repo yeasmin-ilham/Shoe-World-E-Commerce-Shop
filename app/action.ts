@@ -4,6 +4,7 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 import { productSchema } from "./lib/zodSchema";
 import { parseWithZod } from "@conform-to/zod"
+import { prisma } from "./lib/prisma";
 
 export async function CreateProduct( prevState:unknown, formData:FormData){
 
@@ -19,6 +20,23 @@ export async function CreateProduct( prevState:unknown, formData:FormData){
     if(submission.status !== "success"){
         return submission.reply();
     }
+    
+    const flattenUrls = submission.value.images.flatMap((urlString) =>
+        urlString.split(",").map((url) => url.trim())
+    );
 
+    await prisma.product.create({
+        data:{
+            name:submission.value.name,
+            description:submission.value.description,
+            price:submission.value.price,
+            status:submission.value.status,
+            images:flattenUrls,
+            category: submission.value.category,
+            isFeatured:submission.value.isFeatured,
+        }
+    });
+
+    redirect("/dashboard/products")
 
 }
