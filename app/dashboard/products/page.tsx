@@ -1,11 +1,24 @@
+import { prisma } from "@/app/lib/prisma";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription,  CardHeader, CardTitle } from "@/components/ui/card";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { MoreHorizontal, PlusCircle, UserIcon } from "lucide-react";
+import { MoreHorizontal, PlusCircle } from "lucide-react";
+// import Image from "next/image";
 import Link from "next/link";
 
-export default function products(){
+async function getData(){
+
+    const data = await prisma.product.findMany({
+        orderBy:{
+            createdAt:"desc",
+        }
+    })
+    return data;
+}
+
+export default async function products(){
+        const data = await getData();
     return(
         <>
         <div  className="flex items-center justify-end">
@@ -35,28 +48,32 @@ export default function products(){
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    <TableRow>
-                        <TableCell><UserIcon className="w-16 h-16"/></TableCell>
-                        <TableCell>Nike Air</TableCell>
-                        <TableCell>Active</TableCell>
-                        <TableCell>$44</TableCell>
-                        <TableCell>3/4/2024</TableCell>
-                        <TableCell className="text-right">
-                        <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                                <Button size= "icon" variant= "ghost">
-                                    <MoreHorizontal className="w-4 h-4"/>
-                                </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent>
-                                <DropdownMenuLabel>Action</DropdownMenuLabel>
-                                <DropdownMenuSeparator/>
-                                <DropdownMenuItem >Edit </DropdownMenuItem>
-                                <DropdownMenuItem>Delete </DropdownMenuItem>
-                            </DropdownMenuContent>
-                        </DropdownMenu>
-                        </TableCell>
-                    </TableRow>
+                {data.map((item) =>(
+                       <TableRow key={item.id}>
+                       <TableCell>
+                        
+                       </TableCell>
+                       <TableCell>{item.name}</TableCell>
+                       <TableCell>{item.status}</TableCell>
+                       <TableCell>{item.price}</TableCell>
+                       <TableCell>{new Intl.DateTimeFormat("en-US").format(item.createdAt)}</TableCell>
+                       <TableCell className="text-right">
+                       <DropdownMenu>
+                           <DropdownMenuTrigger asChild>
+                               <Button size= "icon" variant= "ghost">
+                                   <MoreHorizontal className="w-4 h-4"/>
+                               </Button>
+                           </DropdownMenuTrigger>
+                           <DropdownMenuContent>
+                               <DropdownMenuLabel>Action</DropdownMenuLabel>
+                               <DropdownMenuSeparator/>
+                               <DropdownMenuItem >Edit </DropdownMenuItem>
+                               <DropdownMenuItem>Delete </DropdownMenuItem>
+                           </DropdownMenuContent>
+                       </DropdownMenu>
+                       </TableCell>
+                   </TableRow>
+                ))}
                 </TableBody>
             </Table>
         </CardContent>

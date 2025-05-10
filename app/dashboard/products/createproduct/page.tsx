@@ -17,6 +17,7 @@ import { parseWithZod } from "@conform-to/zod";
 import { productSchema } from "@/app/lib/zodSchema";
 import { useState } from "react";
 import { category } from "@/app/lib/category";
+import { SubmitButton } from "@/app/components/SubmitButton";
 
 
 export default function createproduct(){
@@ -31,12 +32,12 @@ export default function createproduct(){
 
         lastResult,
         
-        shouldValidate:"onBlur",
-        shouldRevalidate:"onInput",
-
         onValidate({formData}){
             return parseWithZod(formData, {schema:productSchema });
         },
+
+        shouldValidate:"onBlur",
+        shouldRevalidate:"onInput",
     });
 
     const deleteImage = (index:number) =>{
@@ -53,7 +54,7 @@ export default function createproduct(){
             </Button>
             <p className="text-xl font-semibold tracking-tight">New Product</p>
         </div>
-        <Card className="mt-5 mb-10">
+        <Card className="mt-5 mb-20">
             <CardHeader>
                 <CardTitle className="text-2xl font-bold">Product Details</CardTitle>
                 <CardDescription>In this form you can create your product</CardDescription>
@@ -180,7 +181,7 @@ export default function createproduct(){
             </CardContent>
 
             <CardFooter>
-            <Button>Create Product</Button>
+            <SubmitButton/>
         </CardFooter>
         </Card>
         </form>
