@@ -67,7 +67,7 @@ export default async function products(){
                            <DropdownMenuContent>
                                <DropdownMenuLabel>Action</DropdownMenuLabel>
                                <DropdownMenuSeparator/>
-                               <DropdownMenuItem >Edit </DropdownMenuItem>
+                               <DropdownMenuItem asChild><Link href={`/dashboard/products/${item.id}`}>Edit</Link></DropdownMenuItem>
                                <DropdownMenuItem>Delete </DropdownMenuItem>
                            </DropdownMenuContent>
                        </DropdownMenu>

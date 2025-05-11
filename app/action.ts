@@ -28,15 +28,55 @@ export async function CreateProduct( prevState:unknown, formData:FormData){
     await prisma.product.create({
         data:{
             name:submission.value.name,
-            description:submission.value.description,
+            description:submission.value.description, 
             price:submission.value.price,
             status:submission.value.status,
             images:flattenUrls,
             category: submission.value.category,
-            isFeatured:submission.value.isFeatured,
+            isFeatured:submission.value.isFeatured === true ? true : false,
         }
     });
 
     redirect("/dashboard/products")
 
+}
+
+
+export async function updateProduct( prevState:unknown,  formData:FormData){
+    const {getUser} = getKindeServerSession();
+    const user = await getUser();
+
+    if(!user || user.email !== "farjanayeasminilham@gmail.com"){
+        return redirect("/")
+    }
+
+    const submission = parseWithZod(formData , {schema:productSchema});
+
+    if(submission.status !== "success"){
+        return submission.reply();
+    }
+
+    const flattenUrls = submission.value.images.flatMap((urlString) =>
+        urlString.split(",").map((url) => url.trim())
+    );
+
+    const productId = formData.get("productId") as string
+
+    await prisma.product.update({
+        where:{
+            id: productId,
+        },
+
+        data:{
+            name:submission.value.name,
+            description:submission.value.description, 
+            price:submission.value.price,
+            status:submission.value.status,
+            images:flattenUrls,
+            category: submission.value.category,
+            isFeatured:submission.value.isFeatured === true ? true : false,
+        }
+    })
+
+    redirect("/dashboard/products")
 }
