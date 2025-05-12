@@ -1,12 +1,24 @@
+import { prisma } from "@/app/lib/prisma";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
-import { MoreHorizontal, PlusCircle, User2 } from "lucide-react";
+import { MoreHorizontal, PlusCircle } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
-export default function bannerRoute(){
+async function getData(){
+    const data =  await prisma.banner.findMany({
+        orderBy:{
+            createdAt:"desc"
+        }
+    })
+    return data;
+}
+
+export default async function bannerRoute(){
+    const data = await getData();
     return(
         <>
         <div className="flex justify-end">
@@ -36,11 +48,17 @@ export default function bannerRoute(){
                 </TableHeader>
                
                <TableBody>
-                <TableRow>
+               {data.map((banner,index) =>(
+                 <TableRow key={index}>
                     <TableCell>
-                        <User2/>
+                        <Image
+                        src={banner.image}
+                        height={100}
+                        width={100}
+                        alt="Image"
+                        className="rounded-lg object-cover"/>
                     </TableCell>
-                    <TableCell>new Banner</TableCell>
+                    <TableCell>{banner.title}</TableCell>
                     <TableCell className="text-end">
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
@@ -51,11 +69,12 @@ export default function bannerRoute(){
                             <DropdownMenuContent>
                                 <DropdownMenuLabel>Action</DropdownMenuLabel>
                                 <DropdownMenuSeparator/>
-                                <DropdownMenuItem>Delete</DropdownMenuItem>
+                                <DropdownMenuItem asChild><Link href={`/dashboard/banner/${banner.id}`}>Delete</Link></DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>
                     </TableCell>
                 </TableRow>
+               ))}
                </TableBody>
             </Table>
         </CardContent>

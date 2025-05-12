@@ -126,3 +126,20 @@ export async function CreateBanner(prevState:any ,formData:FormData){
 
     redirect("/dashboard/banner");
 }
+
+export async function DeleteBanner(formData:FormData){
+    
+        const {getUser} = getKindeServerSession();
+    const user = await getUser();
+
+    if(!user || user.email !== "farjanayeasminilham@gmail.com"){
+        return redirect("/")
+    }
+
+    await prisma.banner.delete({
+        where:{
+            id:formData.get("BannerId") as string,
+        }
+    })
+    redirect("/dashboard/banner");
+}

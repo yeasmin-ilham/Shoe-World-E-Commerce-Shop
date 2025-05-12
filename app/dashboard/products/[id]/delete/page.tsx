@@ -19,7 +19,7 @@ export default function deleteProduct({params} : {params : {id:string}}){
                 remove all data from our server.
             </CardDescription>
             <CardFooter className="w-full flex justify-between mt-5">
-                <Button variant="secondary"><Link href={"/dashboard/products"}>Cancel</Link></Button>
+                <Button variant="secondary" asChild><Link href={"/dashboard/products"}>Cancel</Link></Button>
                 <form action={DeleteProduct}>
                     <input type="hidden" name="seletedId" value={params.id}/>
                     <SubmitButton variant="destructive" text="Delete Product" />
