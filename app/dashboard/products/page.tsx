@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription,  CardHeader, CardTitle } from "@/co
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { MoreHorizontal, PlusCircle } from "lucide-react";
+import Image from "next/image";
 // import Image from "next/image";
 import Link from "next/link";
 
@@ -51,7 +52,11 @@ export default async function products(){
                 {data.map((item) =>(
                        <TableRow key={item.id}>
                        <TableCell>
-                        
+                        <Image src={item.images[0]}
+                        width={64}
+                        height={64}
+                        alt="Image"
+                        className="rounded-md object-cover h-16 w-16"/>
                        </TableCell>
                        <TableCell>{item.name}</TableCell>
                        <TableCell>{item.status}</TableCell>

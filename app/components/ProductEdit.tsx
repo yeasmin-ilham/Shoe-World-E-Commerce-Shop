@@ -38,7 +38,7 @@ interface dataProp{
 
 export function ProductEdit( {data} : dataProp){
 
-    const [pic , setpic] = useState<string[]>([])
+    const [pic , setpic] = useState<string[]>(data.images)
     
  const [lastResult , action] = useFormState(updateProduct, undefined);
 
@@ -157,7 +157,7 @@ export function ProductEdit( {data} : dataProp){
 
                     <div className="flex flex-col gap-3">
                     <Label>Images</Label>
-                    <input type="hidden" value={Image} key={fields.images.key} name={fields.images.name} defaultValue={data.images as any}/>
+                    <input type="hidden" value={pic} key={fields.images.key} name={fields.images.name} defaultValue={data.images as any}/>
                 {pic.length > 0 ?
                 (
                <div className="flex gap-5">

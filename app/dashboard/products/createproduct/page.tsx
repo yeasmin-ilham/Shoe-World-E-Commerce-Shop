@@ -142,7 +142,7 @@ export default function createproduct(){
 
                     <div className="flex flex-col gap-3">
                     <Label>Images</Label>
-                    <input type="hidden" value={Image} key={fields.images.key} name={fields.images.name} defaultValue={fields.images.initialValue as any}/>
+                    <input type="hidden" value={pic} key={fields.images.key} name={fields.images.name} defaultValue={fields.images.initialValue as any}/>
                 {pic.length > 0 ?
                 (
                <div className="flex gap-5">

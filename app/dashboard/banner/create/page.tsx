@@ -57,7 +57,7 @@ export default function bannerCreate(){
             
             <div className="flex flex-col gap-3"> 
                 <Label>Image</Label>
-                <Input type="hidden" key={fields.image.key}
+                <Input type="hidden" value={image} key={fields.image.key}
                 name={fields.image.name}
                 defaultValue={fields.image.initialValue}/>
                  
