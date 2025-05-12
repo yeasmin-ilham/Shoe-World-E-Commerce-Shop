@@ -42,7 +42,8 @@ export async function CreateProduct( prevState:unknown, formData:FormData){
 }
 
 
-export async function updateProduct( prevState:unknown,  formData:FormData){
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function updateProduct( prevState:any,  formData:FormData){
     const {getUser} = getKindeServerSession();
     const user = await getUser();
 
@@ -79,4 +80,22 @@ export async function updateProduct( prevState:unknown,  formData:FormData){
     })
 
     redirect("/dashboard/products")
+}
+
+
+export async function DeleteProduct(formData:FormData){
+
+     const {getUser} = getKindeServerSession();
+    const user = await getUser();
+
+    if(!user || user.email !== "farjanayeasminilham@gmail.com"){
+        return redirect("/")
+    }
+    
+    await prisma.product.delete({
+        where:{
+            id:formData.get("seletedId") as string,
+        }
+    })
+    return redirect("/dashboard/products")
 }
