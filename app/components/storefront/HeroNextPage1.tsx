@@ -38,7 +38,7 @@ export function HeroNext1(){
          src={Boy}
         alt="Men Product Image"
         className="object-cover object-center sm:absolute sm:inset-0 sm:w-full sm:h-full"/>
-        <div className="bg-gradient-to-b from-transparent to-black opacity-55 sm:absolute sm:inset-0"/>
+        <div className="bg-gradient-to-b from-transparent to-black opacity-45 sm:absolute sm:inset-0"/>
         <div className="flex items-end p-6 sm:absolute sm:inset-0">
             <Link href="/products/men">
                 <h3 className="text-white font-bold">Products for Men</h3>

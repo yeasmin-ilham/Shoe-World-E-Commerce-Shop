@@ -6,6 +6,12 @@ async function getData(){
    const data = await prisma.banner.findMany({
         orderBy:{
             createdAt:"desc"
+        },
+
+        select:{
+            id:true,
+            image:true,
+            title:true,
         }
     })
     return data;

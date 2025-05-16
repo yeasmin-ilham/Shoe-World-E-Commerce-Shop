@@ -1,0 +1,64 @@
+import { FeaturedProduct } from "@/app/components/storefront/Featured";
+import { ProductDetails } from "@/app/components/storefront/ProductDetails";
+import { prisma } from "@/app/lib/prisma"
+import { Button } from "@/components/ui/button";
+import { ShoppingBag, StarIcon } from "lucide-react";
+
+import { notFound } from "next/navigation";
+
+
+async function SpecificData(ProductId:string){
+    const mydata = await prisma.product.findUnique({
+
+        where:{
+            id:ProductId,
+        },
+
+        select:{
+            id:true,
+            name:true,
+            description:true,
+            price:true,
+            images:true,
+        }
+    })
+
+    if(!mydata){
+        return notFound();
+    }
+
+    return mydata;
+}
+
+
+export default async function ProductId({params} : {params : {id:string}}){
+
+    const thisdata = await SpecificData(params.id);
+    return(
+        <>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start lg:gap-x-24 py-6">
+            <ProductDetails images={thisdata.images}/>
+
+            <div>
+                <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">{thisdata.name}</h1>
+                <p className="text-4xl mt-2 text-gray-900">${thisdata.price}</p>
+                <div className="mt-3 flex items-center gap-1">
+                <StarIcon className="h-4 w-4 text-yellow-500 fill-yellow-500"/>
+                <StarIcon className="h-4 w-4 text-yellow-500 fill-yellow-500"/>
+                <StarIcon className="h-4 w-4 text-yellow-500 fill-yellow-500"/>
+                <StarIcon className="h-4 w-4 text-yellow-500 fill-yellow-500"/>
+                <StarIcon className="h-4 w-4 text-yellow-500 fill-yellow-500"/>
+                </div>
+                <p className="text-base text-gray-700 mt-6">{thisdata.description}</p>
+                <Button className="w-full mt-5" size="lg">
+                    <ShoppingBag className="mr-4 h-5 w-5"/> Add to Cart
+                </Button>
+            </div>
+        </div>
+
+        <div className="mt-16">
+            <FeaturedProduct/>
+        </div>
+        </>
+    )
+}
