@@ -17,8 +17,10 @@ import { ImageCard } from "./Image";
             },
 
             orderBy:{
-                createdAt:"desc",
-            }
+                createdAt:"asc",
+            },
+
+            take:9,
         })
         return alldata;
     }
@@ -27,14 +29,14 @@ export async function FeaturedProduct(){
     const productdata = await findallProduct();
     return(
         <>
-       <div className="pb-24">
+      
          <h2 className="text-3xl font-extrabold tracking-tight">Featured Items</h2>
         <div className="mt-5 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
        {productdata.map((item) =>(
         <ImageCard alldata={item} key={item.id}/>
        ))}
         </div>
-       </div>
+       
         </>
     )
 }

@@ -14,6 +14,7 @@ async function getData(){
             title:true,
         }
     })
+
     return data;
 }
 
