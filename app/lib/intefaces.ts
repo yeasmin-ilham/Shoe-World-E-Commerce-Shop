@@ -1,10 +1,10 @@
 export type Cart = {
-    userId:string,
+    userId:string;
     items:Array<{
-        id:string,
-        name:string,
-        price:number,
-        quantity:number,
-        imageString:string,
+        id:string;
+        name:string;
+        price:number;
+        quantity:number;
+        imageString:string;
     }>
 }

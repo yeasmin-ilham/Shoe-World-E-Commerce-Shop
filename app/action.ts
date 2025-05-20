@@ -213,7 +213,7 @@ export async function addItem(productId : string){
         }
     }
 
-    await redis.set(`cart-$(user.id)`, myCart);
+    await redis.set(`cart-${user.id}`, myCart);
 
     revalidatePath("/", "layout");
 }

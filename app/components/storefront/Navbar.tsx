@@ -16,9 +16,8 @@ export async function Navbar(){
     const user = await getUser();
 
     const cart : Cart | null = await redis.get(`cart-${user?.id}`);
-    console.log(cart);
     
-    const total = cart?.items.reduce((sum, item) => sum + item.quantity , 0 || 0)
+    const total = cart?.items.reduce((sum, item) => sum + item.quantity, 0) || 0
     
     return(
         <nav className="w-full max-w-7xl mx-auto px-4 sm:px-7 lg:px-8 py-5 flex items-center justify-between">
@@ -46,8 +45,8 @@ export async function Navbar(){
                 <>
                <div className="flex">
                  <Link href={"/bag"} className="group p-2 flex items-center mr-2">
-                <ShoppingBagIcon className="h-6 w-6 text-gray-400 group-hover:text-gray-600"/>
-                <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">5{total}</span>
+                <ShoppingBagIcon className="h-7 w-7 text-gray-400 group-hover:text-gray-600"/>
+                <span className="ml-2 text-lg lg:text-xl font-semibold">{total}</span>
                 </Link>
                 <UserDropdown name={user.given_name as string}
                 email={user.email as string}

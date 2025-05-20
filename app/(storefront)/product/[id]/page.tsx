@@ -1,9 +1,9 @@
 import { addItem } from "@/app/action";
 import { FeaturedProduct } from "@/app/components/storefront/Featured";
 import { ProductDetails } from "@/app/components/storefront/ProductDetails";
-import { prisma } from "@/app/lib/prisma"
-import { Button } from "@/components/ui/button";
-import { ShoppingBag, StarIcon } from "lucide-react";
+import { CartButton } from "@/app/components/SubmitButton";
+import { prisma } from "@/app/lib/prisma";
+import { StarIcon } from "lucide-react";
 
 import { notFound } from "next/navigation";
 
@@ -53,9 +53,7 @@ export default async function ProductId({params} : {params : {id:string}}){
                 </div>
                 <p className="text-base text-gray-700 mt-6">{thisdata.description}</p>
             <form action={addProducttoShoppingCart}>
-                    <Button className="w-full mt-5" size="lg">
-                    <ShoppingBag className="mr-4 h-5 w-5"/> Add to Cart
-                </Button>
+                <CartButton/>
             </form>
             </div>
         </div>
