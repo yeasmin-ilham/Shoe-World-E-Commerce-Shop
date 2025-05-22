@@ -1,5 +1,6 @@
 import { prisma } from "@/app/lib/prisma"
 import { ImageCard } from "./Image";
+import { unstable_noStore as noStore } from "next/cache";
 
 
     async function findallProduct(){
@@ -26,6 +27,7 @@ import { ImageCard } from "./Image";
     }
 
 export async function FeaturedProduct(){
+    noStore();
     const productdata = await findallProduct();
     return(
         <>

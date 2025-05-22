@@ -7,6 +7,7 @@ import { MoreHorizontal, PlusCircle } from "lucide-react";
 import Image from "next/image";
 // import Image from "next/image";
 import Link from "next/link";
+import { unstable_noStore as noStore } from "next/cache";
 
 async function getData(){
 
@@ -19,6 +20,7 @@ async function getData(){
 }
 
 export default async function products(){
+    noStore();
         const data = await getData();
     return(
         <>

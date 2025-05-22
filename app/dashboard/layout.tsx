@@ -10,10 +10,11 @@ import {LogoutLink} from "@kinde-oss/kinde-auth-nextjs/components";
 import Image from "next/image";
 import Logo from "../assets/pngegg (8).png"
 import { ModeToggle } from "../components/modetoggle";
+import { unstable_noStore as noStore } from "next/cache";
 
 
 export default async function dashboardLayout({children} : {children : ReactNode}){
-
+    noStore();
     const {getUser} = getKindeServerSession();
     const user = await getUser();
 

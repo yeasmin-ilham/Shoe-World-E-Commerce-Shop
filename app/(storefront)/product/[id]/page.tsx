@@ -6,6 +6,7 @@ import { prisma } from "@/app/lib/prisma";
 import { StarIcon } from "lucide-react";
 
 import { notFound } from "next/navigation";
+import { unstable_noStore as noStore } from "next/cache";
 
 
 async function SpecificData(ProductId:string){
@@ -33,7 +34,7 @@ async function SpecificData(ProductId:string){
 
 
 export default async function ProductId({params} : {params : {id:string}}){
-
+        noStore();
     const thisdata = await SpecificData(params.id);
     const addProducttoShoppingCart = addItem.bind(null, thisdata.id)
     return(

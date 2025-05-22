@@ -6,6 +6,7 @@ import women from "@/app/assets/women.jpg"
 import kids from "@/app/assets/kids.jpg"
 import Image from "next/image"
 import all from "@/app/assets/all.png"
+import { unstable_noStore as noStore } from "next/cache";
 
 async function getData(productcategory: string){
 
@@ -98,7 +99,7 @@ async function getData(productcategory: string){
 }
 
 export default async function CategoriesPage({params} : {params : {name: string}}){
-        
+        noStore();
         const {data , title , image} = await getData(params.name)
     return(
        <section>

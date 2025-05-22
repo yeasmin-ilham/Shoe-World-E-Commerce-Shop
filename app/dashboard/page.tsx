@@ -5,6 +5,7 @@ import { DashboardFirstPart } from "../components/dashboard/Dashboard1";
 import { DashboardSecondPart } from "../components/dashboard/Dashboard2";
 import { Chart } from "../components/dashboard/Chart";
 import { prisma } from "../lib/prisma";
+import { unstable_noStore as noStore } from "next/cache";
 
 async function getData (){
 
@@ -39,6 +40,7 @@ async function getData (){
 }
 
 export default async function dashboard(){
+    noStore();
     const data = await getData();
     return( 
         <>
