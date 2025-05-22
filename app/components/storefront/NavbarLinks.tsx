@@ -41,7 +41,7 @@ export function NavbarLinks(){
         <>
             {Navbarlinks.map((res) =>(
                 <Link href={res.link} key={res.id} className={cn(res.link === pathname? 
-                "text-pink-600 bg-pink-500/10 px-2 md:rounded-full" : "text-muted-foreground transition hover:text-pink-500/85 hover:scale-105 ")}>
+                "text-pink-600 bg-pink-500/10 px-2 md:rounded-full" : "transition hover:text-pink-500/85 hover:scale-105 ")}>
                     {res.name}
                     </Link>
             ))}

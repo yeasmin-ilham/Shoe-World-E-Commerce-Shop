@@ -29,18 +29,24 @@ export function SubmitButton({text , variant} : buttonProps){
     )
 }
 
-export function CartButton(){
+
+interface Button {
+    name:string,
+    load:string,
+
+}
+export function CartButton({name, load}: Button){
 
     const {pending} = useFormStatus();
     return(
         <>
         {pending? (
   <Button disabled className="w-full mt-5" size="lg">
-                    <Loader2 className="mr-4 h-5 w-5 animate-spin"/> Please Wait
+                    <Loader2 className="mr-4 h-5 w-5 animate-spin"/> {load}
                 </Button>
         ) : (
   <Button className="w-full mt-5" size="lg" type="submit">
-                    <ShoppingBag className="mr-4 h-5 w-5"/> Add to Cart
+                    <ShoppingBag className="mr-4 h-5 w-5"/> {name}
                 </Button>
         )}
         </>

@@ -1,7 +1,30 @@
+import { prisma } from "@/app/lib/prisma";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
-export default function orders(){
+async function getData(){
+    const data = await prisma.order.findMany({
+
+        select:{
+            id:true,
+            status:true,
+            createdAt:true,
+            amount:true,
+            User:{
+                select:{
+                    firstName:true,
+                    email:true,
+                    profile:true,
+                }
+            }
+        }
+    })
+    return data;
+}
+
+
+export default async function orders(){
+    const orderdata = await getData();
     return(
        <>
        <Card>
@@ -21,16 +44,18 @@ export default function orders(){
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    <TableRow>
+                  {orderdata.map((item) =>(
+                      <TableRow key={item.id}>
                         <TableCell>
-                            <p className="font-medium">Farjana Yeasmin</p>
-                            <p className="hidden md:flex text-sm text-muted-foreground">test@gmail.com</p>
+                            <p className="font-medium">{item.User?.firstName}</p>
+                            <p className="hidden md:flex text-sm text-muted-foreground">{item.User?.email}</p>
                         </TableCell>
-                        <TableCell className="font-medium">Sale</TableCell>
-                        <TableCell className="font-medium">Successful</TableCell>
-                        <TableCell className="font-medium">25-06-15</TableCell>
-                        <TableCell className="text-right font-medium">$132.0</TableCell>
+                        <TableCell className="font-medium">Order</TableCell>
+                        <TableCell className="font-medium">{item.status}</TableCell>
+                        <TableCell className="font-medium">{new Intl.DateTimeFormat("en-US").format(item.createdAt)}</TableCell>
+                        <TableCell className="text-right font-medium">${new Intl.NumberFormat("en-US").format(item.amount/100)}</TableCell>
                     </TableRow>
+                  ))}
                 </TableBody>
             </Table>
         </CardContent>
