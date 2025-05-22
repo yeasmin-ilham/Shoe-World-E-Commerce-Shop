@@ -32,5 +32,7 @@ noStore();
         });
     }
 
-    return NextResponse.redirect("http://localhost:3000/");
+    return NextResponse.redirect(process.env.NODE_ENV === "development" ? 
+        "http://localhost:3000/" : "https://shoe-world-e-commerce-shop-nag4.vercel.app/"
+    );
 }
