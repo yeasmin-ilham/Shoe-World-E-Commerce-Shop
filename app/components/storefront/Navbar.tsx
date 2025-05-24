@@ -24,12 +24,12 @@ export async function Navbar(){
        
 
           <div className="flex items-center gap-6">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-1 sm:gap-3">
                       <Image
             src={Logo}
             width="30" height="30" alt="Logo"/>
                     <Link href={"/"}>
-                <h1 className="font-bold text-2xl lg:text-3xl">Shoe<span className="text-primary">World</span></h1>
+                <h1 className="font-bold text-xl sm:text-2xl lg:text-3xl">Shoe<span className="text-primary">World</span></h1>
                 </Link>
                 </div>
 
@@ -39,14 +39,14 @@ export async function Navbar(){
           </div>
                 
             
-            <div className="flex gap-3 lg:gap-6 ">
+            <div className="flex gap-2 sm:gap-3 lg:gap-6 ">
                 <ModeToggle/> 
             {user? (
                 <>
                <div className="flex">
                  <Link href={"/bag"} className="group p-2 flex items-center mr-2">
-                <ShoppingBagIcon className="h-7 w-7 text-gray-400 group-hover:text-gray-600"/>
-                <span className="ml-2 text-lg lg:text-xl font-semibold">{total}</span>
+                <ShoppingBagIcon className="w-4 h-4 sm:w-7 sm:h-7 text-gray-400 group-hover:text-gray-600 mt-0"/>
+                <span className="ml-2 text-sm sm:text-lg lg:text-xl font-semibold">{total}</span>
                 </Link>
                 <UserDropdown name={user.given_name as string}
                 email={user.email as string}
@@ -54,7 +54,7 @@ export async function Navbar(){
                </div>
                 </>
             ) : (
-            <div className="flex md:flex-1 md:items-center md:justify-end space-x-2 lg:space-x-3">
+            <div className="hidden md:flex md:flex-1 md:items-center md:justify-end space-x-2 lg:space-x-3">
                 <Button asChild className="bg-purple-200 text-black hover:bg-purple-300 font-semibold  lg:p-4"><LoginLink>Login</LoginLink></Button>
                 <span className="h-6 w-px bg-gray-200"></span>
                 <Button asChild className="bg-purple-200 text-black  hover:bg-purple-300 font-semibold  lg:p-4"><RegisterLink>Sign Up</RegisterLink></Button>
@@ -62,10 +62,10 @@ export async function Navbar(){
             )}
              <Sheet>
                 <SheetTrigger asChild>
-                    <Button className="md:hidden shrink-0"
+                    <Button className="md:hidden shrink-0 w-3 h-3 mt-3 sm:w-8 sm:h-8 sm:mt-1"
                     variant= "outline"
                     size= "icon" >
-                        <MenuIcon className="h-5 w-5"/>
+                        <MenuIcon className=" h-3 w-3 sm:h-5 sm:w-5"/>
                     </Button>
                 </SheetTrigger>
                 <SheetContent>
@@ -73,6 +73,11 @@ export async function Navbar(){
                         <nav className="flex flex-col gap-6 font-medium text-lg mt-7 ">
                             <NavbarLinks/>
                         </nav>
+
+                        <div className=" mt-5 flex flex-col space-y-5">
+                <Button asChild className="bg-purple-200 text-black hover:bg-purple-300 font-semibold  lg:p-4"><LoginLink>Login</LoginLink></Button>
+                <Button asChild className="bg-purple-200 text-black  hover:bg-purple-300 font-semibold  lg:p-4"><RegisterLink>Sign Up</RegisterLink></Button>
+            </div>
                     
                 </SheetContent>
             </Sheet>

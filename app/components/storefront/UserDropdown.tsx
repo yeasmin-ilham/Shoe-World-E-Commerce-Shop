@@ -15,7 +15,7 @@ export function UserDropdown({name,email,profilePic}: Identity){
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className=" relative rounded-full">
-                    <Avatar className="w-10 h-10">
+                    <Avatar className="w-6 h-6 sm:w-10 sm:h-10">
                         <AvatarImage src={profilePic} alt="Image"/>
                         <AvatarFallback>{name.slice(0,3)}</AvatarFallback>/
                     </Avatar>
