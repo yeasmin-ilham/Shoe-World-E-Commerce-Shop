@@ -18,6 +18,10 @@ async function getData(){
                     profile:true,
                 }
             }
+        },
+        
+        orderBy:{
+            createdAt:'desc'
         }
     })
     return data;
