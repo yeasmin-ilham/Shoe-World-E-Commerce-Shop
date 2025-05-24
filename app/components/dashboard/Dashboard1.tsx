@@ -45,7 +45,7 @@ export async function DashboardFirstPart(){
                     <DollarSign className="w-4 h-4 text-green-500"/>
                 </CardHeader>
                 <CardContent>
-                <p className="text-2xl font-bold">{total}</p>
+                <p className="text-2xl font-bold">${new Intl.NumberFormat("en-US").format(total / 100)}</p>
                 <p className="text-xs text-muted-foreground">Based on 100 charges</p>
                 </CardContent>
             </Card>
