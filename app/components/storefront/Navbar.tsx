@@ -39,7 +39,7 @@ export async function Navbar(){
           </div>
                 
             
-            <div className="flex gap-7 md:gap-3 lg:gap-6 ">
+            <div className="flex gap-3 lg:gap-6 ">
                 <ModeToggle/> 
             {user? (
                 <>
@@ -75,8 +75,8 @@ export async function Navbar(){
                         </nav>
 
                         <div className=" mt-5 flex flex-col space-y-5">
-                <Button asChild className="bg-purple-200 text-black hover:bg-purple-300 font-semibold  lg:p-4"><LoginLink>Login</LoginLink></Button>
-                <Button asChild className="bg-purple-200 text-black  hover:bg-purple-300 font-semibold  lg:p-4"><RegisterLink>Sign Up</RegisterLink></Button>
+                <Button asChild className="bg-purple-200 text-black hover:bg-purple-300 font-semibold "><LoginLink>Login</LoginLink></Button>
+                <Button asChild className="bg-purple-200 text-black  hover:bg-purple-300 font-semibold "><RegisterLink>Sign Up</RegisterLink></Button>
             </div>
                     
                 </SheetContent>
