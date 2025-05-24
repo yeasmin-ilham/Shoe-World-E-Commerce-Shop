@@ -39,7 +39,7 @@ export async function Navbar(){
           </div>
                 
             
-            <div className="flex gap-2 sm:gap-3 lg:gap-6 ">
+            <div className="flex gap-7 md:gap-3 lg:gap-6 ">
                 <ModeToggle/> 
             {user? (
                 <>
